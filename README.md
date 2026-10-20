@@ -1,7 +1,42 @@
 # Stellar Anomaly ML
 
-A small machine-learning experiment using Kepler observations
-of KIC 8462852 (Tabby's Star).
+## Project overview
+
+**Stellar Anomaly ML** investigates anomaly detection in real
+NASA Kepler observations of KIC 8462852 (Tabby's Star).
+
+The experiment compares a robust statistical method (median
+absolute deviation, or MAD) against an unsupervised machine-learning
+model (Isolation Forest).
+
+Both methods were evaluated on a chronological held-out segment
+containing 48 artificially injected brightness reductions.
+
+### Key result
+
+| Metric | MAD baseline | Isolation Forest |
+|---|---:|---:|
+| Precision | 0.7164 | 0.4898 |
+| Recall | 1.0000 | 1.0000 |
+| F1 score | **0.8348** | 0.6575 |
+
+Both methods recovered all 48 injected disturbances. Under the
+tested configurations, the simpler MAD baseline produced fewer
+additional flags and achieved a higher F1 score.
+
+**Scientific limitation:** These results measure recovery of
+synthetic, single-observation brightness reductions. They do
+not establish accuracy at detecting genuine astronomical events.
+The source FITS file also has documented internal checksum
+verification failures.
+
+### Technologies
+
+Python 3.13, NumPy, pandas, scikit-learn, Astropy, Matplotlib,
+and Git.
+
+---
+
 
 ## Dataset
 
