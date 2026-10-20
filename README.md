@@ -86,3 +86,28 @@ The model uses brightness alone and ignores temporal structure.
 The Isolation Forest is evaluated on its training observations.
 No independently labeled real stellar anomalies are available.
 Synthetic-injection evaluation remains to be implemented.
+
+## Source integrity verification
+
+The original FITS file was downloaded twice from the NASA MAST
+endpoint. Both copies contained 466,560 bytes and had identical
+SHA-256 hashes:
+
+26d64427416a415bb6f7e330279f9581cc3a02f209a93292da13e2f17fbf2957
+
+Astropy FITS-internal CHECKSUM verification results:
+- PRIMARY: PASS
+- LIGHTCURVE: FAIL
+- APERTURE: FAIL
+
+No DATASUM keywords were present.
+
+The cause of the FITS-internal checksum failures remains
+unresolved. Matching downloads establish byte consistency
+with the current MAST response, not independent scientific
+validation of the measurements.
+
+The extraction script reproduces the original CSV byte-for-byte.
+
+CSV SHA-256:
+e54525769b69787f3751a6800cd00f162a45664fd32afdab2e73d8fe12d9b20d
