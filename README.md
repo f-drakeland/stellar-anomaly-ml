@@ -111,3 +111,47 @@ The extraction script reproduces the original CSV byte-for-byte.
 
 CSV SHA-256:
 e54525769b69787f3751a6800cd00f162a45664fd32afdab2e73d8fe12d9b20d
+
+## Held-out synthetic-injection experiment
+
+Executable: experiment.py
+
+Dataset:
+- 3,217 quality-filtered observations
+- Chronological 70/30 train/test split
+- Training observations: 2,251
+- Test observations: 966
+
+Synthetic intervention:
+- Random seed: 42
+- 48 test observations selected without replacement
+- Each selected flux reduced by 0.2% of training median
+- No synthetic changes to training observations
+
+Methods:
+- MAD baseline: training median and MAD, threshold 3.5
+- Isolation Forest: 100 estimators, contamination 0.03
+- Both methods fitted using training data only
+
+Results:
+
+| Metric | MAD | Isolation Forest |
+|---|---:|---:|
+| Flagged | 67 | 98 |
+| Precision | 0.7164 | 0.4898 |
+| Recall | 1.0000 | 1.0000 |
+| F1 | 0.8348 | 0.6575 |
+
+Two consecutive executions produced byte-identical text output.
+
+Interpretation:
+Under these specific settings, MAD achieved higher precision
+and F1 while both methods recovered all injected observations.
+
+Limitations:
+- Synthetic single-point disturbances are not realistic stellar events.
+- Non-injected observations are not independently verified as normal.
+- Results do not establish real astronomical detection accuracy.
+- Thresholds were not calibrated to equal false-positive rates.
+- Only one random seed and injection magnitude were evaluated.
+- Neither method uses temporal relationships between observations.
