@@ -12,6 +12,14 @@ model (Isolation Forest).
 Both methods were evaluated on a chronological held-out segment
 containing 48 artificially injected brightness reductions.
 
+### Kepler light curve
+
+![Kepler Quarter 2 light curve of Tabby's Star](images/lightcurve.png)
+
+*Quality-filtered Kepler observations of KIC 8462852,
+normalized to median brightness. Visible variations are
+not independently confirmed astronomical anomalies.*
+
 ### Key result
 
 | Metric | MAD baseline | Isolation Forest |
